@@ -24,8 +24,12 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift)) {focusSpeed = 0.5f;}
         else {focusSpeed = 1f;}
 
-        Vector3 movement = new Vector3(horizontal * speed * focusSpeed * Time.deltaTime, vertical * speed * focusSpeed * Time.deltaTime, 0f);
+        Vector3 movement = new Vector3(horizontal, vertical, 0f);
 
-        transform.position = transform.position + movement;
+        movement.Normalize();
+
+        movement = new Vector3(movement.x * speed * focusSpeed * Time.deltaTime, movement.y * speed * focusSpeed * Time.deltaTime, 0f);
+
+        rb.linearVelocity = movement;
     }
 }
