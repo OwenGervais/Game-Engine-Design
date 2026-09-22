@@ -5,12 +5,12 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    float focusSpeed = 1f;
-
     [SerializeField] private float speed = 10f;
 
     private void Awake()
     {
+        //For ideal smooth movement I lock the frame rate at 60 frames per second.
+        Time.captureFramerate = 60;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -20,15 +20,14 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
-        //could use Ternary operation here instead
-        if(Input.GetKey(KeyCode.LeftShift)) {focusSpeed = 0.5f;}
-        else {focusSpeed = 1f;}
+        //Ternary operation cause its clean af
+        float focusSpeed = Input.GetKey(KeyCode.LeftShift) ? 0.5f : 1f;
 
         Vector3 movement = new Vector3(horizontal, vertical, 0f);
 
         movement.Normalize();
 
-        movement = new Vector3(movement.x * speed * focusSpeed * Time.deltaTime, movement.y * speed * focusSpeed * Time.deltaTime, 0f);
+        movement = new Vector3(movement.x * speed * focusSpeed, movement.y * speed * focusSpeed, 0f);
 
         rb.linearVelocity = movement;
     }
