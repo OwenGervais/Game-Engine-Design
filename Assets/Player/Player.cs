@@ -31,4 +31,6 @@ public class Player : MonoBehaviour
 
         rb.linearVelocity = movement;
     }
+
+    void OnTriggerEnter (Co)
 }
