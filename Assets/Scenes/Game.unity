@@ -2024,8 +2024,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   rb: {fileID: 1590387851}
+  col: {fileID: 0}
   speed: 1.5
-  loseText: {fileID: 0}
+  loseText: {fileID: 1330051213}
 --- !u!1001 &1612235929
 PrefabInstance:
   m_ObjectHideFlags: 0
