@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3028839978090355371}
   - component: {fileID: 8202254612320608553}
-  - component: {fileID: 7123016212375346087}
+  - component: {fileID: 293571421370938009}
   - component: {fileID: 3508459596859200015}
   m_Layer: 0
-  m_Name: Long Projectile
-  m_TagString: Untagged
+  m_Name: Long Projectile Spiral
+  m_TagString: Enemy Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
---- !u!114 &7123016212375346087
+--- !u!114 &293571421370938009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,11 +103,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 9093351928691642471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a6c5bd19b938a47bd71d1244cfe8f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 51a5877dda91f35449174173ab4e8520, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StandardProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::SpiralProjectile
   lifetime: 1
   speed: 1
+  rotationSpeed: 10
 --- !u!70 &3508459596859200015
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

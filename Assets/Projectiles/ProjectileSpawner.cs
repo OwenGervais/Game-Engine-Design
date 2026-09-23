@@ -23,12 +23,12 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
+        timer += 1;
 
         if (spawnerType == SpawnerType.Spin)
         {
             float rotationDirection = reverse ? -1f : 1f;
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + spinSpeed * rotationDirection * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + spinSpeed * rotationDirection);
         }
 
         if (timer >= firingRate)

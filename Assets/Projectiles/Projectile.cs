@@ -27,9 +27,9 @@ public abstract class Projectile : MonoBehaviour
 
     protected virtual void Update()
     {
-        elapsedTime += Time.deltaTime;
+        elapsedTime += 1;
 
-        if (elapsedTime >= Lifetime)
+        if (elapsedTime >= Lifetime * 60) // lifetime is based on seconds
         {
             Destroy(gameObject);
             return;
@@ -40,7 +40,7 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void Initialize(float projectileSpeed, float projectileLifetime)
     {
-        Speed = projectileSpeed;
+        Speed = projectileSpeed / 60;
         Lifetime = projectileLifetime;
     }
 
@@ -50,23 +50,5 @@ public abstract class Projectile : MonoBehaviour
         float x = startPosition.x + timer * Speed * direction.x;
         float y = startPosition.y + timer * Speed * direction.y;
         return new Vector2(x, y);
-    }
-}
-
-public class StandardProjectile : Projectile
-{
-    // Inherited projectile behavior: straight movement with no override.
-}
-
-public class WavyProjectile : Projectile
-{
-    [SerializeField] private float waveAmplitude = 0.25f;
-    [SerializeField] private float waveFrequency = 8f;
-
-    protected override Vector2 CalculateMovement(float timer, Vector2 startPosition)
-    {
-        Vector2 basePosition = base.CalculateMovement(timer, startPosition);
-        float waveOffset = Mathf.Sin(timer * waveFrequency) * waveAmplitude;
-        return new Vector2(basePosition.x, basePosition.y + waveOffset);
     }
 }

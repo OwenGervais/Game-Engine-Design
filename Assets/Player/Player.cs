@@ -1,11 +1,14 @@
 using UnityEngine;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
 
+    public Collider2D col;
+
     [SerializeField] private float speed = 10f;
+
+    [SerializeField] private GameObject loseText;
 
     private void Awake()
     {
@@ -32,5 +35,12 @@ public class Player : MonoBehaviour
         rb.linearVelocity = movement;
     }
 
-    void OnTriggerEnter (Co)
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.GameObject.tag == "Enemy Projectile")
+        //{
+            loseText.SetActive(true);
+            this.gameObject.SetActive(false);
+        //}
+    }
 }
