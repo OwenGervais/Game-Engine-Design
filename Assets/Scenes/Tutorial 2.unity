@@ -2333,6 +2333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829256859}
   - component: {fileID: 1829256858}
+  - component: {fileID: 1829256860}
   m_Layer: 0
   m_Name: Singleton
   m_TagString: Untagged
@@ -2360,13 +2361,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829256857}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.65, y: 9.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829256860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829256857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a5f687a4025c549bea3029a0b69dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SingletonBaseTesting
 --- !u!4 &1829741467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 529678021492915490, guid: 33e459925ee4a0d4e937d49a991f0c2b, type: 3}
@@ -3175,8 +3188,8 @@ SceneRoots:
   - {fileID: 221883588}
   - {fileID: 897923190}
   - {fileID: 1027758446}
-  - {fileID: 1829256859}
   - {fileID: 1347483708}
+  - {fileID: 1829256859}
   - {fileID: 226895543}
   - {fileID: 1957043092}
   - {fileID: 260788889}

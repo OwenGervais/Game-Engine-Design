@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 //Owen From 15 mins earlier: Poor method, works fine for now I guess. Switch to Scriptable Objects for phases going forward.
 
@@ -12,13 +13,18 @@ enum GameState
 
 public class GameController : MonoBehaviour
 {
+    public static GameController Instance { get; private set; }
+
+    public int CurrentScore { get; set; }
+
     [SerializeField] private int phaseOneDuration = 60;
     [SerializeField] private int phaseTwoDuration = 60;
 
     [SerializeField] private GameObject phase1;
     [SerializeField] private GameObject phase2;
     [SerializeField] private GameObject winText;
-    
+    [SerializeField] private TMP_Text scoreText;
+
     private int phaseTimer = 0;
     private int currentPhaseDuration = 60;
 
@@ -26,11 +32,24 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         PhaseChange(GameState.PhaseOne);
     }
 
     void Update()
     {
+        scoreText.text = CurrentScore.ToString();
+
+        if (Input.GetKeyDown(KeyCode.R)) Restart();
+        
+
         phaseTimer++;
 
         if (phaseTimer >= currentPhaseDuration * 60)
@@ -51,8 +70,6 @@ public class GameController : MonoBehaviour
 
     void PhaseChange(GameState gameState)
     {
-        Debug.Log("You're fucked");
-
         //When changing phases switch active spawners and destroy all projectiles
         switch (gameState)
         {
@@ -71,5 +88,12 @@ public class GameController : MonoBehaviour
                 currentPhase = 1;
                 break;
         }
+    }
+
+    void Restart() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+
+    public void PhaseEnd()
+    {
+        //Wipe the play area of projectiles.
     }
 }

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy Projectile
   - Player Projectile
+  - Graze
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

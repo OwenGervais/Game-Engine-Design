@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
 
-    [SerializeField] private GameObject loseText;
-
     private void Awake()
     {
         //For ideal smooth movement I lock the frame rate at 60 frames per second.
@@ -33,14 +31,5 @@ public class Player : MonoBehaviour
         movement = new Vector3(movement.x * speed * focusSpeed, movement.y * speed * focusSpeed, 0f);
 
         rb.linearVelocity = movement;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (collision.GameObject.tag == "Enemy Projectile")
-        //{
-            loseText.SetActive(true);
-            this.gameObject.SetActive(false);
-        //}
     }
 }
