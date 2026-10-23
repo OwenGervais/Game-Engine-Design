@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\oweng\\onedrive\\documents\\github\\game engine design\\assets\\plugintesting\\dll_2026_unity\\dll_2026_unity\\gameobject.h",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\oweng\\onedrive\\documents\\github\\game engine design\\assets\\plugintesting\\dll_2026_unity\\dll_2026_unity\\pluginsettings.h",
+            "c:\\users\\oweng\\onedrive\\documents\\github\\game engine design\\assets\\plugintesting\\dll_2026_unity\\dll_2026_unity\\vector2d.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

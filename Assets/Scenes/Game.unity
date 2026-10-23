@@ -1348,6 +1348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1027758446}
   - component: {fileID: 1027758447}
+  - component: {fileID: 1027758448}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1388,6 +1389,18 @@ MonoBehaviour:
   phase2: {fileID: 897923189}
   winText: {fileID: 1852226409}
   scoreText: {fileID: 250922291479862684}
+--- !u!114 &1027758448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027758445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe959ebc54a11841b2e4b28bc0b3695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PluginTest
 --- !u!1 &1043195805
 GameObject:
   m_ObjectHideFlags: 0
