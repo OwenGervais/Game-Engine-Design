@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "DLL_2026_Unity\\x64\\Debug\\GameObject.obj",
+            "outputs": [
+                "DLL_2026_Unity\\x64\\Debug\\GameObject.h.obj.dt.module.json",
+                "DLL_2026_Unity\\x64\\Debug\\GameObject.h.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
