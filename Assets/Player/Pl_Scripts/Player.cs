@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IReplayObject
 {
     public Rigidbody2D rb;
 
@@ -8,11 +8,26 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 10f;
 
+    public void LoadSnapshot()
+    {
+        
+    }
+
+    public void SaveSnapshot()
+    {
+
+    }
+
     private void Awake()
     {
         //For ideal smooth movement I lock the frame rate at 60 frames per second.
         Time.captureFramerate = 60;
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        ReplayManager.instance.Register(this);
     }
 
     // Update is called once per frame

@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject phase2;
     [SerializeField] private GameObject winText;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private ReplayManager m_replayManager;
 
     private int phaseTimer = 0;
     private int currentPhaseDuration = 60;
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
                 phase2.SetActive(false);
                 phaseTimer = 0;
                 currentPhaseDuration = phaseOneDuration;
+                m_replayManager.StartRecording();
                 break;
             case GameState.PhaseTwo:
                 phase1.SetActive(false);
@@ -86,6 +88,7 @@ public class GameController : MonoBehaviour
                 phaseTimer = 0;
                 currentPhaseDuration = phaseTwoDuration;
                 currentPhase = 1;
+                m_replayManager.Stop();
                 break;
         }
     }
