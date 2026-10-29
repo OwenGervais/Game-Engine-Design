@@ -1,12 +1,14 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.SceneManagement;
 using System;
+using System.Numerics;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum GameState
 {
     PhaseOne,
-    PhaseTwo
+    PhaseTwo,
+    PhaseThree
 }
 
 namespace Patterns.Creational.Factory.Usage
@@ -29,17 +31,18 @@ namespace Patterns.Creational.Factory.Usage
         private int currentPhaseDuration = 60;
 
         private int currentPhase = 0;
+        private bool complete = false;
 
         [SerializeField] private EnemyFactory factory;
 
-        void Start()
-        {
-            IEnemy enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 0, 0));
-            IEnemy enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 0, 0));
-        }
+        private IEnemy enemy1;
+        private IEnemy enemy2;
 
         void Awake()
         {
+            enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
+            enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 8, 0));
+
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -65,11 +68,16 @@ namespace Patterns.Creational.Factory.Usage
                 if (currentPhase == 0)
                 {
                     PhaseChange(GameState.PhaseTwo);
+                    
                 }
                 else
                 {
-                    phase2.SetActive(false);
-                    winText.SetActive(true);
+                    if (!complete)
+                    {
+                        complete = true;
+                        enemy2.Die();
+                        winText.SetActive(true);
+                    }
                 }
             }
 
@@ -83,14 +91,13 @@ namespace Patterns.Creational.Factory.Usage
             {
                 case GameState.PhaseOne:
 
-                    phase1.SetActive(true);
-                    phase2.SetActive(false);
+                    enemy1.Attack();
                     phaseTimer = 0;
                     currentPhaseDuration = phaseOneDuration;
                     break;
                 case GameState.PhaseTwo:
-                    phase1.SetActive(false);
-                    phase2.SetActive(true);
+                    enemy1.Die();
+                    enemy2.Attack();
                     phaseTimer = 0;
                     currentPhaseDuration = phaseTwoDuration;
                     currentPhase = 1;

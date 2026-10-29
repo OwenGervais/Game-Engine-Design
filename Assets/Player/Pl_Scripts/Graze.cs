@@ -1,5 +1,5 @@
+using Patterns.Creational.Factory.Usage;
 using UnityEngine;
-using System.Collections;
 
 public class Graze : MonoBehaviour
 {

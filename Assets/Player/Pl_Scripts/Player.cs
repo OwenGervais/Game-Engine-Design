@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
         //Record
         else
         {
-            // live: read the keys and record them
             frame.horizontal = Input.GetAxisRaw("Horizontal");
             frame.vertical = Input.GetAxisRaw("Vertical");
             frame.focus = Input.GetKey(KeyCode.LeftShift);
