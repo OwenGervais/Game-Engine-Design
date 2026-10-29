@@ -20,8 +20,6 @@ namespace Patterns.Creational.Factory.Usage
         [SerializeField] private int phaseOneDuration = 60;
         [SerializeField] private int phaseTwoDuration = 60;
 
-        [SerializeField] private GameObject phase1;
-        [SerializeField] private GameObject phase2;
         [SerializeField] private GameObject winText;
         [SerializeField] private TMP_Text scoreText;
 
@@ -57,7 +55,6 @@ namespace Patterns.Creational.Factory.Usage
             scoreText.text = CurrentScore.ToString();
 
             if (Input.GetKeyDown(KeyCode.R)) Restart();
-
 
             phaseTimer++;
 
@@ -104,6 +101,14 @@ namespace Patterns.Creational.Factory.Usage
         }
 
         void Restart() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+
+        /*public  int AddScore(int score)
+        {
+            CurrentScore += score;
+            return CurrentScore;
+
+            scoreText.text = CurrentScore.ToString();
+        }*/
 
         public void PhaseEnd()
         {

@@ -6,11 +6,9 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
 
-    public Collider2D col;
-
     [SerializeField] private float speed = 1.5f;
 
-    // One entry per frame of input.
+    //Singular Frame of input
     private struct Frame
     {
         public float horizontal;
@@ -18,14 +16,17 @@ public class Player : MonoBehaviour
         public bool focus;
     }
 
-    // static so the recording survives the scene reload
+    //List of frames recorded. Static so that it persists across scene reloads.
     private static readonly List<Frame> run = new List<Frame>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics() => run.Clear();
 
-    private int replayLength;   // how many recorded frames to replay this time
-    private int playIndex;
+    //Number of frames recorded.
+    private int replayLength; 
+
+    //Current frame
+    private int currentFrame;
 
     private void Awake()
     {
@@ -49,9 +50,9 @@ public class Player : MonoBehaviour
         Frame frame;
 
         //Replay
-        if (playIndex < replayLength)
+        if (currentFrame < replayLength)
         {
-            frame = run[playIndex++];
+            frame = run[currentFrame++];
         }
 
         //Record
