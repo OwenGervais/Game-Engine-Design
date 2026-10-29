@@ -14,6 +14,10 @@ extern "C"
 
 	PLUGIN_API void SetID(int id);
 
+	PLUGIN_API int GetRotation();
+
+	PLUGIN_API void SetRotation(int rotation);
+
 	PLUGIN_API Vector2D GetPosition();
 
 	PLUGIN_API void SetPosition(float x, float y);

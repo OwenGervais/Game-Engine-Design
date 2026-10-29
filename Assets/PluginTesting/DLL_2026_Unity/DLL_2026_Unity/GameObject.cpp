@@ -4,7 +4,7 @@ GameObject::GameObject()
 {
 	SetID();
 	SetPosition();
-
+	SetRotation();
 }
 
 int GameObject::GetID() const
@@ -14,7 +14,17 @@ int GameObject::GetID() const
 
 void GameObject::SetID(const int id)
 {
-	m_id = id+200;
+	m_id = id+420;
+}
+
+int GameObject::GetRotation() const
+{
+	return m_rotation;
+}
+
+void GameObject::SetRotation(const int rotation)
+{
+	m_rotation = rotation+1;
 }
 
 Vector2D GameObject::GetPosition() const

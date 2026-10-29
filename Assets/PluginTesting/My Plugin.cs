@@ -15,6 +15,12 @@ public static class MyPlugin
     private static extern void SetID(int id);
 
     [DllImport("DLL_2026_Unity")]
+    private static extern int GetRotation();
+
+    [DllImport("DLL_2026_Unity")]
+    private static extern void SetRotation(int rotation);
+
+    [DllImport("DLL_2026_Unity")]
     private static extern Vector2D GetPosition();
 
     [DllImport("DLL_2026_Unity")]
@@ -26,8 +32,15 @@ public static class MyPlugin
         set { SetID(value); }
     }
 
+    public static int Rotation
+    {
+        get { return GetRotation(); }
+        set { SetRotation(value); }
+    }
+
     public static Vector2D Position
     {
         get { return GetPosition(); }
+        set { SetPosition(value.x, value.y); }
     }
 }
