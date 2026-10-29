@@ -19,9 +19,6 @@ public class Player : MonoBehaviour
     //List of frames recorded. Static so that it persists across scene reloads.
     private static readonly List<Frame> run = new List<Frame>();
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    private static void ResetStatics() => run.Clear();
-
     //Number of frames recorded.
     private int replayLength; 
 
@@ -52,6 +49,7 @@ public class Player : MonoBehaviour
         //Replay
         if (currentFrame < replayLength)
         {
+            //Make current inputs equal to the inputs recorded in the current frame.
             frame = run[currentFrame++];
         }
 
@@ -61,6 +59,8 @@ public class Player : MonoBehaviour
             frame.horizontal = Input.GetAxisRaw("Horizontal");
             frame.vertical = Input.GetAxisRaw("Vertical");
             frame.focus = Input.GetKey(KeyCode.LeftShift);
+
+            //Add the current inputs as a frame to the run list.
             run.Add(frame);
         }
 
