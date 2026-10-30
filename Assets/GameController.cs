@@ -36,6 +36,16 @@ namespace Patterns.Creational.Factory.Usage
 
         void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+
+            DontDestroyOnLoad(gameObject);
+
             enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
             enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 8, 0));
 
