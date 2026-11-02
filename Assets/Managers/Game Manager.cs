@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,17 +10,12 @@ enum GameState
 
 namespace Patterns.Creational.Factory.Usage
 {
-    public class GameController : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
-        public static GameController Instance { get; private set; }
-
-        public int CurrentScore { get; set; }
-
         [SerializeField] private int phaseOneDuration = 60;
         [SerializeField] private int phaseTwoDuration = 60;
 
         [SerializeField] private GameObject winText;
-        [SerializeField] private TMP_Text scoreText;
 
         private int phaseTimer = 0;
         private int currentPhaseDuration = 60;
@@ -36,35 +30,18 @@ namespace Patterns.Creational.Factory.Usage
 
         void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-
-            DontDestroyOnLoad(gameObject);
-
             enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
             enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 8, 0));
 
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-
             PhaseChange(GameState.PhaseOne);
+
         }
 
         void Update()
         {
-            scoreText.text = CurrentScore.ToString();
-
             if (Input.GetKeyDown(KeyCode.R)) Restart();
+
+            if (Input.GetKeyDown(KeyCode.T)) SceneAndScoreReset();
 
             phaseTimer++;
 
@@ -112,13 +89,11 @@ namespace Patterns.Creational.Factory.Usage
 
         void Restart() { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 
-        /*public  int AddScore(int score)
+        void SceneAndScoreReset()
         {
-            CurrentScore += score;
-            return CurrentScore;
-
-            scoreText.text = CurrentScore.ToString();
-        }*/
+            ScoreManager.Instance.ResetScore();
+            Restart();
+        }
 
         public void PhaseEnd()
         {

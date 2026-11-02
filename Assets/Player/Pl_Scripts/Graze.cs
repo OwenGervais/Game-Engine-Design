@@ -1,4 +1,5 @@
 using Patterns.Creational.Factory.Usage;
+using TMPro;
 using UnityEngine;
 
 public class Graze : MonoBehaviour
@@ -7,7 +8,7 @@ public class Graze : MonoBehaviour
     {
         if (other.CompareTag("Enemy Projectile"))
         {
-            GameController.Instance.CurrentScore += 1;
+            ScoreManager.Instance.AddScore(1);
         }
     }
 }

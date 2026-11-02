@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -8,16 +9,20 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed = 1.5f;
 
-    //Singular Frame of input
+    /*Singular Frame of input
     private struct Frame
     {
         public float horizontal;
         public float vertical;
         public bool focus;
-    }
+    }*/
+
+    //States for commands
+    private Vector2 movementDir;
+    private bool focused;
 
     //List of frames recorded. Static so that it persists across scene reloads.
-    private static readonly List<Frame> run = new List<Frame>();
+    private static readonly List<ICommand[]> run = new List<ICommand[]>();
 
     //Number of frames recorded.
     private int replayLength; 
@@ -37,14 +42,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // R restarts the scene
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            return;
-        }
+        //Frame frame;
 
-        Frame frame;
+        ICommand[] frame;
 
         //Replay
         if (currentFrame < replayLength)
@@ -56,23 +56,42 @@ public class Player : MonoBehaviour
         //Record
         else
         {
-            frame.horizontal = Input.GetAxisRaw("Horizontal");
-            frame.vertical = Input.GetAxisRaw("Vertical");
-            frame.focus = Input.GetKey(KeyCode.LeftShift);
+            frame = new ICommand[]
+            {
+                new MoveCommand(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))),
+                new FocusCommand(Input.GetKey(KeyCode.LeftShift))
+            };
+            
 
             //Add the current inputs as a frame to the run list.
             run.Add(frame);
         }
 
-        //Ternary operation cause its clean af
-        float focusSpeed = frame.focus ? 0.5f : 1f;
+        foreach (ICommand command in frame)
+        {
+            command.Execute(this);
+        }
 
-        Vector3 movement = new Vector3(frame.horizontal, frame.vertical, 0f);
+        //Ternary operation cause its clean af
+        float focusSpeed = focused ? 0.5f : 1f;
+
+        Vector3 movement = new Vector3(movementDir.x, movementDir.y, 0f);
 
         movement.Normalize();
 
         movement = new Vector3(movement.x * speed * focusSpeed, movement.y * speed * focusSpeed, 0f);
 
         rb.linearVelocity = movement;
+
+    }
+
+    public void SetMoveDirection(Vector2 movementDir)
+    {
+        this.movementDir = movementDir;
+    }
+
+    public void SetFocus(bool focused)
+    {
+        this.focused = focused;
     }
 }
