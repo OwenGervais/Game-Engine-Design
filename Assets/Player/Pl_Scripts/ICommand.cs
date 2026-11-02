@@ -5,7 +5,7 @@ public interface ICommand
     void Execute(Player player);
 }
 
-//Vector2 movemnet from the player input
+//Vector2 movement from the player input
 public class MoveCommand : ICommand
 {
     private Vector2 movementDir;

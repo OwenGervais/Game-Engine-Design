@@ -1,5 +1,3 @@
-using Patterns.Creational.Factory.Usage;
-using TMPro;
 using UnityEngine;
 
 public class Graze : MonoBehaviour
