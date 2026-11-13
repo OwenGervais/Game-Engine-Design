@@ -32,6 +32,9 @@ public class Player : MonoBehaviour
     {
         //For ideal smooth movement I lock the frame rate at 60 frames per second.
         Time.captureFramerate = 60;
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+
         rb = GetComponent<Rigidbody2D>();
 
         replayLength = run.Count;
