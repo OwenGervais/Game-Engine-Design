@@ -12,6 +12,10 @@ namespace Patterns.Creational.Factory.Usage
 {
     public class GameManager : MonoBehaviour
     {
+        public Projectile bulletPrefab;
+
+        public bool playable = true;
+
         [SerializeField] private int phaseOneDuration = 60;
         [SerializeField] private int phaseTwoDuration = 60;
 
@@ -30,11 +34,21 @@ namespace Patterns.Creational.Factory.Usage
 
         void Awake()
         {
-            enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
-            enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 8, 0));
+            if (playable)
+            {
+                enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
+                enemy2 = factory.CreateEnemy(EnemyType.Enemy2, new Vector3(0, 8, 0)); 
+                
+                PhaseChange(GameState.PhaseOne);
+            }
 
-            PhaseChange(GameState.PhaseOne);
+            SetupPool();
 
+        }
+
+        private void SetupPool()
+        {
+            ObjectPooler.SetupPool(bulletPrefab, 200, "Bullet");
         }
 
         void Update()

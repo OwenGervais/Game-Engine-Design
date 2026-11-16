@@ -45,7 +45,9 @@ public class ProjectileSpawner : MonoBehaviour
             return;
         }
 
-        Projectile spawnedProjectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        spawnedProjectile.Initialize(speed, projectileLife);
+        Projectile instance = ObjectPooler.DequeueObject<Projectile>("Bullet");
+        instance.gameObject.SetActive(true);
+        instance.Initialize(speed, projectileLife, transform.position);
+        instance.transform.SetPositionAndRotation(transform.position, transform.rotation);
     }
 }

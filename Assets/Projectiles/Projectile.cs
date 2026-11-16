@@ -20,26 +20,25 @@ public abstract class Projectile : MonoBehaviour
         set => speed = Mathf.Max(0f, value);
     }
 
-    protected virtual void Start()
-    {
-        spawnPoint = transform.position;
-    }
-
     protected virtual void Update()
     {
         elapsedTime += 1;
 
         if (elapsedTime >= Lifetime * 60) // lifetime is based on seconds
         {
-            Destroy(gameObject);
+            ObjectPooler.EnqueueObject(this, "Bullet");
+
             return;
         }
 
         transform.position = CalculateMovement(elapsedTime, spawnPoint);
     }
 
-    public virtual void Initialize(float projectileSpeed, float projectileLifetime)
+    public virtual void Initialize(float projectileSpeed, float projectileLifetime, Vector2 startPosition)
     {
+        elapsedTime = 0;
+
+        spawnPoint = startPosition;
         Speed = projectileSpeed / 60;
         Lifetime = projectileLifetime;
     }
