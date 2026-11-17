@@ -28,15 +28,15 @@ public static class ObjectPooler
 
     public static T EnqueueNewInstance<T>(T item, string key) where T : Component
     {
-        if (poolDictionary[key].Count < 500)
-        {
+        //if (poolDictionary[key].Count < 500)
+        //{
             T newInstance = Object.Instantiate(item);
             newInstance.gameObject.SetActive(false);
             newInstance.transform.position = Vector2.zero;
             poolDictionary[key].Enqueue(newInstance);
             return newInstance;
-        }
-        return null;
+        //}
+        //return null;
 
     }
 
