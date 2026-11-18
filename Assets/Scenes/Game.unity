@@ -978,8 +978,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1027758446}
   - component: {fileID: 1027758447}
-  - component: {fileID: 1027758448}
   - component: {fileID: 1027758449}
+  - component: {fileID: 1027758450}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1015,23 +1015,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   bulletPrefab: {fileID: 7123016212375346087, guid: a2ffad1e2a2e2024ea43bbf391e8d4ad, type: 3}
-  playable: 1
+  playable: 0
   phaseOneDuration: 10
   phaseTwoDuration: 10
   winText: {fileID: 1852226409}
   factory: {fileID: 1027758449}
---- !u!114 &1027758448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027758445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe959ebc54a11841b2e4b28bc0b3695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PluginTest
 --- !u!114 &1027758449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,6 +1034,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Patterns.Creational.Factory.EnemyFactory
   _enemyType1: {fileID: 1660031449651672852, guid: 7e75ff77a7385a24099805844b5224ce, type: 3}
   _enemyType2: {fileID: 2986168801062476574, guid: bbb60938f104ac343b947c95e2f098cb, type: 3}
+  _enemyType3: {fileID: 4238090332205431171, guid: 13ae23143f5660843855c308d54f1625, type: 3}
+--- !u!114 &1027758450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027758445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdf30d70d221794a8f1b3045817c9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Patterns.Creational.Factory.ProjectileFactory
+  _pPatternType1: {fileID: 1413408193304229796, guid: a1424eea5d3e4064ea0015876a85c8d3, type: 3}
+  _pPatternType2: {fileID: 0}
+  _bulletPrefab: {fileID: 7123016212375346087, guid: a2ffad1e2a2e2024ea43bbf391e8d4ad, type: 3}
+  _bulletPoolSize: 200
 --- !u!1 &1043195805
 GameObject:
   m_ObjectHideFlags: 0

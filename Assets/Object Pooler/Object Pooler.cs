@@ -18,12 +18,12 @@ public static class ObjectPooler
 
     public static T DequeueObject<T>(string key) where T : Component
     {
-        if(poolDictionary[key].TryDequeue(out var item))
+        if (poolDictionary[key].TryDequeue(out var item))
         {
             return (T)item;
         }
 
-        return (T)EnqueueNewInstance(poolLookup[key], key);
+        return Object.Instantiate((T)poolLookup[key]);
     }
 
     public static T EnqueueNewInstance<T>(T item, string key) where T : Component

@@ -36,6 +36,8 @@ public abstract class Projectile : MonoBehaviour
 
     public virtual void Initialize(float projectileSpeed, float projectileLifetime, Vector2 startPosition)
     {
+        Debug.Log("Spawned!");
+
         elapsedTime = 0;
 
         spawnPoint = startPosition;

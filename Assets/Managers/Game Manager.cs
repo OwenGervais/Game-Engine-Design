@@ -31,9 +31,12 @@ namespace Patterns.Creational.Factory.Usage
 
         private IEnemy enemy1;
         private IEnemy enemy2;
+        private IEnemy enemy3;
 
         void Awake()
         {
+            enemy3 = factory.CreateEnemy(EnemyType.Enemy3, new Vector3(0, 8, 0));
+
             if (playable)
             {
                 enemy1 = factory.CreateEnemy(EnemyType.Enemy1, new Vector3(0, 8, 0));
@@ -41,18 +44,15 @@ namespace Patterns.Creational.Factory.Usage
                 
                 PhaseChange(GameState.PhaseOne);
             }
-
-            SetupPool();
-
-        }
-
-        private void SetupPool()
-        {
-            ObjectPooler.SetupPool(bulletPrefab, 200, "Bullet");
         }
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                enemy3.Attack();
+            }
+
             if (Input.GetKeyDown(KeyCode.R)) Restart();
 
             if (Input.GetKeyDown(KeyCode.T)) SceneAndScoreReset();

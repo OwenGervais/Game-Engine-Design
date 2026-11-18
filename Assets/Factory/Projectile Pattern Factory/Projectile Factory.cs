@@ -10,10 +10,23 @@ namespace Patterns.Creational.Factory
 
     public class ProjectileFactory : MonoBehaviour
     {
+        public static ProjectileFactory Instance { get; private set; }
+
         [SerializeField] private GameObject _pPatternType1;
         [SerializeField] private GameObject _pPatternType2;
 
-        public IPPattern CreatePPattern(PPatternType type, Vector3 position)
+        [SerializeField] private Projectile _bulletPrefab;
+        [SerializeField] private int _bulletPoolSize = 100;
+
+        private void Awake()
+        {
+            Instance = this;
+
+            if (!ObjectPooler.poolDictionary.ContainsKey("Bullet"))
+                ObjectPooler.SetupPool(_bulletPrefab, _bulletPoolSize, "Bullet");
+        }
+
+        public IPPattern CreatePPattern(PPatternType type, Vector3 position, float baseAngleDegrees = 0f)
         {
             GameObject prefab = type switch
             {
@@ -23,7 +36,9 @@ namespace Patterns.Creational.Factory
             };
 
             var instance = Instantiate(prefab, position, Quaternion.identity);
-            return instance.GetComponent<IPPattern>();
+            var pattern = instance.GetComponent<IPPattern>();
+            pattern.Fire(baseAngleDegrees);
+            return pattern;
         }
     }
 }
